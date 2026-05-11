@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#statusBar {
+    position: fixed;
+    top: 20;
+    right: 20;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 12px 18px;
+    border-radius: 12px;
+
+    font-size: 18px;
+}
+
+.liveIndicator {
+    width: 14px;
+    height: 14px;
+    background: red;
+    border-radius: 50%;
+
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#prompterContainer {
+    width: 100%;
+    padding: 100px 120px;
+}
+
+#prompter {
+    font-size: 64px;
+    line-height: 1.6;
+    font-weight: bold;
+    white-space: pre-wrap;
+
+    transform: scaleX(-1);
+
+    will-change: transform;
+}
+
+p{
+    margin-bottom: 40px;
+}
+
+.cue {
+    color: #ff4d4d;
+}
+
+.name {
+    color: #00d9ff;
+}
