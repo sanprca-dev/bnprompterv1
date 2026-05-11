@@ -10,4 +10,4 @@ const CONFIG = {
     MIN_SPEED: 0, // Velocidad mínima teleprompter
 
     AUTO_FULLSCREEN: false, 
-}
+};
