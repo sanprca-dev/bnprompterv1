@@ -262,18 +262,6 @@ async function fetchPrompterData() {
     }
 }
 
-/****************************************
- * AUTO REFRESH
- ****************************************/
-
-setInterval(() => {
-
-    if (documentId) {
-
-        fetchPrompterData();
-    }
-
-}, CONFIG.REFRESH_INTERVAL);
 
 /****************************************
  * KEYBOARD CONTROLS
