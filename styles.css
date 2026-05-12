@@ -234,3 +234,56 @@ body{
 p{
     margin-bottom:40px;
 }
+
+
+#fontSizeSelector{
+
+    display:flex;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+
+    margin-top:12px;
+}
+
+.fontSizeOption{
+
+    width:140px;
+
+    min-height:140px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#1b1b1b;
+
+    color:white;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:0.2s;
+}
+
+.fontSizeOption:hover{
+
+    background:#2d2d2d;
+}
+
+.fontSizeOption.selected{
+
+    outline:3px solid #00d9ff;
+}
+
+
