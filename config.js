@@ -1,13 +1,12 @@
 const CONFIG = {
-    API_URL: 'https://script.google.com/macros/s/AKfycbxzy81MIUZ76Heag-ZLS9exVeqcw-UAVpeMNP2rSFgwH_twM9ZDvt5RUiDdsFkgfDuO/exec',
 
-    REFRESH_INTERVAL: 5000, // Intervalo de actualización en milisegundos (5 segundos)
+  API_URL: 'https://script.google.com/macros/s/AKfycbyNmXp5Le4gPupIxc-51jofEMWr5JEm2iBSTXQ_u3DH1GmkJEiippTsGWfoOjruCjRYFw/exec?doc=1thbg6iA5z-eXFnVaVhxB4zxFv3FovAMNwvx77hXrk-k',
 
-    DEFAULT_SPEED: 2, // velocidad de teleprompter
+  REFRESH_INTERVAL: 5000,
 
-    MAX_SPEED: 10, // velocidad máxima teleprompter
+  DEFAULT_SPEED: 2,
 
-    MIN_SPEED: 0, // Velocidad mínima teleprompter
+  MAX_SPEED: 10,
 
-    AUTO_FULLSCREEN: false, 
+  MIN_SPEED: 0
 };
