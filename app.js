@@ -169,6 +169,9 @@ startButton.addEventListener('click', async () => {
     prompter.style.fontSize =
     `${selectedFontSize}px`;
 
+    prompter.style.lineHeight =
+    '1.5';
+
     scrollSpeed =
     parseFloat(speedSlider.value);
 
@@ -289,6 +292,11 @@ async function fetchPrompterData() {
         .replaceAll(
             'color:black',
             'color:#ffffff'
+        )
+        
+        .replace(
+            /font-size:[^;"]+;?/gi,
+            ''
         );
 
         if (
