@@ -1,79 +1,219 @@
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    background-color: #000;
-    color: #fff;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    font-family: Arial, Helvetica, sans-serif;
+body{
+    background:#000;
+    color:#fff;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow:hidden;
 }
 
-#statusBar {
-    position: fixed;
-    top: 20;
-    right: 20;
-    z-index: 9999;
+/* SETUP SCREEN */
 
-    display: flex;
-    align-items: center;
-    gap: 12px;
+#setupScreen{
 
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 12px 18px;
-    border-radius: 12px;
+    position:fixed;
 
-    font-size: 18px;
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#000;
+
+    z-index:9999;
 }
 
-.liveIndicator {
-    width: 14px;
-    height: 14px;
-    background: red;
-    border-radius: 50%;
+.setupCard{
 
-    animation: pulse 1s infinite;
+    width:500px;
+
+    background:#111;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
 }
 
-@keyframes pulse {
-    0% {
-        opacity: 1;
+.setupCard h1{
+
+    font-size:42px;
+}
+
+.setupCard input,
+.setupCard select{
+
+    width:100%;
+
+    padding:16px;
+
+    font-size:18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#222;
+
+    color:#fff;
+}
+
+.controlGroup{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+#speedSlider{
+
+    width:100%;
+}
+
+#startButton{
+
+    padding:18px;
+
+    font-size:20px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#00ff99;
+
+    color:#000;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+#setupError{
+
+    color:#ff4d4d;
+}
+
+/* PROMPTER SCREEN */
+
+#prompterScreen{
+
+    display:none;
+
+    width:100%;
+
+    height:100vh;
+
+    overflow-y:scroll;
+
+    overflow-x:hidden;
+
+    background:#000;
+}
+
+#statusBar{
+
+    position:fixed;
+
+    top:20px;
+
+    right:20px;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    background:rgba(0,0,0,0.7);
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    font-size:18px;
+}
+
+.liveIndicator{
+
+    width:14px;
+
+    height:14px;
+
+    background:red;
+
+    border-radius:50%;
+
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        opacity:1;
     }
-    50% {
-        opacity: 0.3;
+
+    50%{
+        opacity:0.3;
     }
-    100% {
-        opacity: 1;
+
+    100%{
+        opacity:1;
     }
 }
 
-#prompterContainer {
-    width: 100%;
-    padding: 100px 120px;
+#prompterContainer{
+
+    width:100%;
+
+    padding:120px;
 }
 
-#prompter {
-    font-size: 64px;
-    line-height: 1.6;
-    font-weight: bold;
-    white-space: pre-wrap;
+#prompter{
 
-    transform: scaleX(-1);
+    font-size:64px;
 
-    will-change: transform;
+    line-height:1.6;
+
+    font-weight:bold;
+
+    white-space:pre-wrap;
+}
+
+/* ORIENTATIONS */
+
+.normal{
+    transform:none;
+}
+
+.mirror-x{
+    transform:scaleX(-1);
+}
+
+.mirror-y{
+    transform:scaleY(-1);
+}
+
+.mirror-both{
+    transform:scale(-1,-1);
 }
 
 p{
-    margin-bottom: 40px;
-}
-
-.cue {
-    color: #ff4d4d;
-}
-
-.name {
-    color: #00d9ff;
+    margin-bottom:40px;
 }
