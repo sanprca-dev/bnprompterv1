@@ -37,6 +37,13 @@ document.getElementById('setupError');
 const refreshButton =
 document.getElementById('refreshButton');
 
+const fontSizeOptions =
+document.querySelectorAll(
+    '.fontSizeOption'
+);
+
+let selectedFontSize = 64;
+
 /****************************************
  * STATE
  ****************************************/
@@ -57,6 +64,31 @@ let orientation = 'normal';
 /****************************************
  * UI INIT
  ****************************************/
+
+fontSizeOptions.forEach(
+    (option) => {
+
+    option.addEventListener(
+        'click',
+        () => {
+
+        fontSizeOptions.forEach(
+            (btn) => {
+
+            btn.classList.remove(
+                'selected'
+            );
+        });
+
+        option.classList.add(
+            'selected'
+        );
+
+        selectedFontSize =
+        option.dataset.size;
+    });
+});
+
 
 speedSlider.addEventListener('input', () => {
 
@@ -127,6 +159,9 @@ startButton.addEventListener('click', async () => {
 
     applyOrientation();
 
+    prompter.style.fontSize =
+    `${selectedFontSize}px`;
+
     scrollSpeed =
     parseFloat(speedSlider.value);
 
@@ -146,6 +181,11 @@ startButton.addEventListener('click', async () => {
     localStorage.setItem(
         'prompter_speed',
         scrollSpeed
+    );
+
+    localStorage.setItem(
+    'prompter_fontsize',
+    selectedFontSize
     );
 
     setupScreen.style.display =
@@ -230,15 +270,30 @@ async function fetchPrompterData() {
         const html =
         await response.text();
 
+        const processedHtml =
+
+        html
+        
+        .replaceAll(
+            'color:#000000',
+            'color:#ffffff'
+        )
+        
+        .replaceAll(
+            'color:black',
+            'color:#ffffff'
+        );
+
         if (
-            html !== currentContent
+            processedHtml !==
+            currentContent
         ) {
 
             const currentScroll =
             prompterScreen.scrollTop;
 
             currentContent =
-            html;
+            processedHtml;
 
             prompter.innerHTML =
             currentContent;
@@ -395,6 +450,35 @@ window.addEventListener(
     localStorage.getItem(
         'prompter_speed'
     );
+
+    const savedFontSize =
+    localStorage.getItem(
+    'prompter_fontsize'
+    );
+
+    if (savedFontSize) {
+
+    selectedFontSize =
+    savedFontSize;
+
+    fontSizeOptions.forEach(
+        (btn) => {
+
+        btn.classList.remove(
+            'selected'
+        );
+
+        if (
+            btn.dataset.size ===
+            savedFontSize
+        ) {
+
+            btn.classList.add(
+                'selected'
+            );
+        }
+    );
+    }
 
     if (savedDoc) {
 
