@@ -1,27 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Bethel Noticias Prompter</title>
-    
-    <link rel="stylesheet" href="styles.css">
-</head>
 <body>
 
-    <div id="statusBar">
-        <div class="liveIndicator"></div>
-        <span id="connectionStatus">Conectando...</span>
+    <!-- SETUP SCREEN -->
+
+    <div id="setupScreen">
+
+        <div class="setupCard">
+
+            <h1>Bethel Prompter</h1>
+
+            <input
+                type="text"
+                id="docLinkInput"
+                placeholder="Pega aquí el link de Google Docs"
+            >
+
+            <div class="controlGroup">
+
+                <label>Velocidad Inicial</label>
+
+                <input
+                    type="range"
+                    id="speedSlider"
+                    min="1"
+                    max="10"
+                    value="2"
+                >
+
+                <span id="speedValue">2</span>
+
+            </div>
+
+            <div class="controlGroup">
+
+                <label>Orientación</label>
+
+                <select id="orientationSelect">
+
+                    <option value="normal">Normal</option>
+
+                    <option value="mirror-x">
+                        Horizontal Mirror
+                    </option>
+
+                    <option value="mirror-y">
+                        Vertical Mirror
+                    </option>
+
+                    <option value="mirror-both">
+                        Both Mirrors
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button id="startButton">
+                Start Prompter
+            </button>
+
+            <p id="setupError"></p>
+
+        </div>
+
     </div>
 
-    <div id="prompterContainer">
-        <div id="prompter"></div>
-        
+    <!-- PROMPTER SCREEN -->
+
+    <div id="prompterScreen">
+
+        <div id="statusBar">
+
+            <div class="liveIndicator"></div>
+
+            <span id="connectionStatus">
+                Connecting...
+            </span>
+
+            <span id="playbackStatus">
+                PLAYING
+            </span>
+
+            <span id="speedIndicator">
+                SPEED 2
+            </span>
+
+        </div>
+
+        <div id="prompterContainer">
+
+            <div id="prompter"></div>
+
+        </div>
+
     </div>
-    
+
     <script src="config.js"></script>
     <script src="app.js"></script>
 
 </body>
-</html>
