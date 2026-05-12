@@ -68,39 +68,46 @@ let orientation = 'normal';
 fontSizeOptions.forEach(
     (option) => {
 
-    option.addEventListener(
-        'click',
-        () => {
+        option.addEventListener(
+            'click',
+            () => {
 
-        fontSizeOptions.forEach(
-            (btn) => {
+                fontSizeOptions.forEach(
+                    (btn) => {
 
-            btn.classList.remove(
-                'selected'
-            );
-        });
+                        btn.classList.remove(
+                            'selected'
+                        );
+                    }
+                );
 
-        option.classList.add(
-            'selected'
+                option.classList.add(
+                    'selected'
+                );
+
+                selectedFontSize =
+                option.dataset.size;
+            }
+        );
+    }
+);
+
+speedSlider.addEventListener(
+    'input',
+    () => {
+
+        scrollSpeed =
+        parseFloat(
+            speedSlider.value
         );
 
-        selectedFontSize =
-        option.dataset.size;
-    });
-});
+        speedValue.innerText =
+        scrollSpeed;
 
-
-speedSlider.addEventListener('input', () => {
-
-    scrollSpeed =
-    parseFloat(speedSlider.value);
-
-    speedValue.innerText =
-    scrollSpeed;
-
-    speedIndicator.innerText =
-    `SPEED ${scrollSpeed}`;
-});
+        speedIndicator.innerText =
+        `SPEED ${scrollSpeed}`;
+    }
+);
 
 /****************************************
  * EXTRACT GOOGLE DOC ID
@@ -453,31 +460,32 @@ window.addEventListener(
 
     const savedFontSize =
     localStorage.getItem(
-    'prompter_fontsize'
+        'prompter_fontsize'
     );
 
     if (savedFontSize) {
 
-    selectedFontSize =
-    savedFontSize;
+        selectedFontSize =
+        savedFontSize;
 
-    fontSizeOptions.forEach(
-        (btn) => {
+        fontSizeOptions.forEach(
+            (btn) => {
 
-        btn.classList.remove(
-            'selected'
+                btn.classList.remove(
+                    'selected'
+                );
+
+                if (
+                    btn.dataset.size ===
+                    savedFontSize
+                ) {
+
+                    btn.classList.add(
+                        'selected'
+                    );
+                }
+            }
         );
-
-        if (
-            btn.dataset.size ===
-            savedFontSize
-        ) {
-
-            btn.classList.add(
-                'selected'
-            );
-        }
-    );
     }
 
     if (savedDoc) {
