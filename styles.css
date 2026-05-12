@@ -13,43 +13,42 @@ body{
 
 /* SETUP SCREEN */
 
-#setupScreen{
+#setupScreen {
 
-    position:fixed;
+    min-height: 100vh;
 
-    inset:0;
+    display: flex;
 
-    display:flex;
+    justify-content: center;
 
-    justify-content:center;
+    align-items: center;
 
-    align-items:center;
-
-    background:#000;
-
-    z-index:9999;
+    padding: 30px;
 }
 
-.setupCard{
+.setupCard {
 
-    width:500px;
+    width: 100%;
 
-    background:#111;
+    max-width: 900px;
 
-    padding:40px;
+    background: #111;
 
-    border-radius:20px;
+    border-radius: 24px;
 
-    display:flex;
+    padding: 40px;
 
-    flex-direction:column;
-
-    gap:24px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
 }
 
-.setupCard h1{
 
-    font-size:42px;
+.setupCard h1 {
+
+    font-size: clamp(32px, 5vw, 64px);
+
+    margin-bottom: 30px;
+
+    text-align: center;
 }
 
 .setupCard input,
@@ -57,17 +56,21 @@ body{
 
     width:100%;
 
-    padding:16px;
+    padding:18px;
 
-    font-size:18px;
+    font-size:clamp(16px, 2vw, 22px);
 
     border:none;
 
-    border-radius:12px;
+    border-radius:14px;
 
     background:#222;
 
     color:#fff;
+
+    margin-top:8px;
+
+    margin-bottom:10px;
 }
 
 .controlGroup{
@@ -77,6 +80,8 @@ body{
     flex-direction:column;
 
     gap:12px;
+
+    margin-bottom:24px;
 }
 
 #speedSlider{
@@ -284,6 +289,44 @@ p{
 .fontSizeOption.selected{
 
     outline:3px solid #00d9ff;
+}
+
+@media (max-width: 768px){
+
+    .setupCard{
+
+        padding:24px;
+    }
+
+    #prompterContainer{
+
+        padding:60px 30px;
+    }
+
+    #statusBar{
+
+        top:10px;
+
+        right:10px;
+
+        font-size:14px;
+
+        gap:10px;
+
+        padding:10px 12px;
+    }
+
+    .fontSizeOption{
+
+        width:100px;
+
+        min-height:100px;
+    }
+
+    #prompter{
+
+        line-height:1.4;
+    }
 }
 
 
