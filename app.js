@@ -185,10 +185,8 @@ function startScrollEngine() {
 
         if (!paused) {
 
-            window.scrollBy(
-                0,
-                scrollSpeed * 0.4
-            );
+            prompterScreen.scrollTop +=
+                scrollSpeed * 0.4;
         }
 
         animationFrame =
@@ -234,7 +232,7 @@ async function fetchPrompterData() {
         ) {
 
             const currentScroll =
-            window.scrollY;
+            prompterScreen.scrollTop;
 
             currentContent =
             html;
@@ -242,10 +240,8 @@ async function fetchPrompterData() {
             prompter.innerHTML =
             currentContent;
 
-            window.scrollTo(
-                0,
-                currentScroll
-            );
+            prompterScreen.scrollTop =
+            currentScroll;
         }
 
         connectionStatus.innerText =
