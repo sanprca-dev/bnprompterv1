@@ -196,6 +196,23 @@ body{
     white-space:pre-wrap;
 }
 
+#refreshButton{
+
+    padding:10px 14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#00d9ff;
+
+    color:#000;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
 /* ORIENTATIONS */
 
 .normal{
