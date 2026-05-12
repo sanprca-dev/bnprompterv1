@@ -37,7 +37,7 @@ async function fetchPrompterData() {
 
     try {
         const response = await fetch(
-            CONFIG.API_URL + '?t=' + Date.now(),
+            CONFIG.API_URL + '&t=' + Date.now()
             {
                 cache: 'no-store',
             }
