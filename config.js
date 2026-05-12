@@ -1,6 +1,6 @@
 const CONFIG = {
 
-  API_URL: 'https://script.google.com/macros/s/AKfycbwTjJmMNCuduCJaJAAICkA2k8K_dBr2poP6G4vjd8IikLyrpDkSesR-iFyHlS1b91rB/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzhYooNojqMyzaFKiFlejQjNM-aHFLASjFytPDyZWx-UpwnigC8QSwb9YDI_wu-1q8hag/exec',
 
   REFRESH_INTERVAL: 5000,
 
