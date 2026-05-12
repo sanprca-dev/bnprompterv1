@@ -423,6 +423,22 @@ refreshButton.addEventListener(
 });
 
 /****************************************
+ * AUTO REFRESH
+ ****************************************/
+
+setInterval(
+    async () => {
+
+        if (documentId) {
+
+            await fetchPrompterData();
+        }
+
+    },
+    15000
+);
+
+/****************************************
  * FULLSCREEN
  ****************************************/
 
