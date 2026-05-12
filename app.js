@@ -1,5 +1,5 @@
 const prompter = document.getElementById('prompter');
-const connectionStatus = document.getElementById('connectionstatus');
+const connectionStatus = document.getElementById('connectionStatus');
 
 let currentContent = '';
 
@@ -43,7 +43,7 @@ async function fetchPrompterData() {
             }
         );
 
-        const html = await response.json();
+        const html = await response.text();
         if (html !== currentContent) {
 
             const currentScroll = window.scrollY;
