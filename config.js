@@ -1,5 +1,5 @@
 const CONFIG = {
-    API_URL: 'https://script.google.com/macros/s/AKfycbyNmXp5Le4gPupIxc-51jofEMWr5JEm2iBSTXQ_u3DH1GmkJEiippTsGWfoOjruCjRYFw/exec',
+    API_URL: 'https://script.google.com/macros/s/AKfycbxzy81MIUZ76Heag-ZLS9exVeqcw-UAVpeMNP2rSFgwH_twM9ZDvt5RUiDdsFkgfDuO/exec',
 
     REFRESH_INTERVAL: 5000, // Intervalo de actualización en milisegundos (5 segundos)
 
