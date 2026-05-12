@@ -8,7 +8,9 @@ body{
     background:#000;
     color:#fff;
     font-family:Arial, Helvetica, sans-serif;
-    overflow:hidden;
+
+    overflow-x:hidden;
+    overflow-y:auto;
 }
 
 /* SETUP SCREEN */
@@ -17,26 +19,41 @@ body{
 
     min-height: 100vh;
 
-    display: flex;
+    display:flex;
 
-    justify-content: center;
+    justify-content:center;
 
-    align-items: center;
+    align-items:flex-start;
 
-    padding: 30px;
+    padding:40px 20px;
+
+    overflow-y:auto;
+}
+
+#setupScreen::-webkit-scrollbar{
+    width:8px;
+}
+
+#setupScreen::-webkit-scrollbar-thumb{
+    background:#333;
+    border-radius:10px;
 }
 
 .setupCard {
 
-    width: 100%;
+    width:100%;
 
-    max-width: 900px;
+    max-width:800px;
 
-    background: #111;
+    max-height: calc(100vh - 40px);
 
-    border-radius: 24px;
+    overflow-y:auto;
 
-    padding: 40px;
+    background:#111;
+
+    border-radius:24px;
+
+    padding:28px;
 
     box-shadow: 0 0 40px rgba(0,0,0,0.5);
 }
@@ -91,9 +108,11 @@ body{
 
 #startButton{
 
-    padding:18px;
+    width:100%;
 
-    font-size:20px;
+    padding:16px;
+
+    font-size:clamp(16px, 2vw, 20px);
 
     border:none;
 
@@ -254,9 +273,9 @@ p{
 
 .fontSizeOption{
 
-    width:140px;
+    width:110px;
 
-    min-height:140px;
+    min-height:110px;
 
     border:none;
 
@@ -291,42 +310,5 @@ p{
     outline:3px solid #00d9ff;
 }
 
-@media (max-width: 768px){
-
-    .setupCard{
-
-        padding:24px;
-    }
-
-    #prompterContainer{
-
-        padding:60px 30px;
-    }
-
-    #statusBar{
-
-        top:10px;
-
-        right:10px;
-
-        font-size:14px;
-
-        gap:10px;
-
-        padding:10px 12px;
-    }
-
-    .fontSizeOption{
-
-        width:100px;
-
-        min-height:100px;
-    }
-
-    #prompter{
-
-        line-height:1.4;
-    }
-}
 
 
