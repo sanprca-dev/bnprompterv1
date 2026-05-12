@@ -34,6 +34,9 @@ document.getElementById('startButton');
 const setupError =
 document.getElementById('setupError');
 
+const refreshButton =
+document.getElementById('refreshButton');
+
 /****************************************
  * STATE
  ****************************************/
@@ -337,6 +340,17 @@ function updateSpeedUI() {
     speedIndicator.innerText =
     `SPEED ${scrollSpeed}`;
 }
+
+/****************************************
+ * MANUAL REFRESH
+ ****************************************/
+
+refreshButton.addEventListener(
+    'click',
+    async () => {
+
+    await fetchPrompterData();
+});
 
 /****************************************
  * FULLSCREEN
