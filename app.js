@@ -104,8 +104,7 @@ speedSlider.addEventListener(
         speedValue.innerText =
         scrollSpeed;
 
-        speedIndicator.innerText =
-        `SPEED ${scrollSpeed}`;
+        updateSpeedUI();
     }
 );
 
@@ -175,8 +174,7 @@ startButton.addEventListener('click', async () => {
     scrollSpeed =
     parseFloat(speedSlider.value);
 
-    speedIndicator.innerText =
-    `SPEED ${scrollSpeed}`;
+    updateSpeedUI();
 
     localStorage.setItem(
         'prompter_doc',
@@ -239,7 +237,7 @@ function startScrollEngine() {
         if (!paused) {
 
             prompterScreen.scrollTop +=
-                scrollSpeed * 0.4;
+                scrollSpeed * 1.2;
         }
 
         animationFrame =
@@ -344,9 +342,37 @@ window.addEventListener(
     'keydown',
     (event) => {
 
+    console.log(
+        'KEY:',
+        event.key,
+        'CODE:',
+        event.code
+    );
+
+    /******************************
+     * BLOQUEAR F5
+     ******************************/
+
+    if (
+        event.key === 'F5'
+    ) {
+
+        event.preventDefault();
+
+        return;
+    }
+
     switch (event.key) {
 
+        /******************************
+         * PLAY / PAUSE
+         ******************************/
+
         case ' ':
+
+        case 'b':
+
+        case 'B':
 
             event.preventDefault();
 
@@ -362,7 +388,15 @@ window.addEventListener(
 
             break;
 
+        /******************************
+         * SPEED UP
+         ******************************/
+
         case 'ArrowUp':
+
+        case 'PageDown':
+
+            event.preventDefault();
 
             scrollSpeed = Math.min(
                 CONFIG.MAX_SPEED,
@@ -373,10 +407,18 @@ window.addEventListener(
 
             break;
 
+        /******************************
+         * SPEED DOWN
+         ******************************/
+
         case 'ArrowDown':
 
+        case 'PageUp':
+
+            event.preventDefault();
+
             scrollSpeed = Math.max(
-                CONFIG.MIN_SPEED,
+                -CONFIG.MAX_SPEED,
                 scrollSpeed - 1
             );
 
@@ -384,11 +426,38 @@ window.addEventListener(
 
             break;
 
+        /******************************
+         * IGNORAR SHIFT
+         ******************************/
+
+        case 'Shift':
+
+            event.preventDefault();
+
+            break;
+
+        /******************************
+         * FULLSCREEN
+         ******************************/
+
         case 'f':
 
         case 'F':
 
             toggleFullscreen();
+
+            break;
+
+        /******************************
+         * ESCAPE
+         ******************************/
+
+        case 'Escape':
+
+            paused = true;
+
+            playbackStatus.innerText =
+            'PAUSED';
 
             break;
     }
@@ -402,13 +471,29 @@ window.addEventListener(
 function updateSpeedUI() {
 
     speedSlider.value =
-    scrollSpeed;
+    Math.max(
+        1,
+        scrollSpeed
+    );
 
     speedValue.innerText =
     scrollSpeed;
 
-    speedIndicator.innerText =
-    `SPEED ${scrollSpeed}`;
+    if (scrollSpeed > 0) {
+
+        speedIndicator.innerText =
+        `DOWN ${scrollSpeed}`;
+
+    } else if (scrollSpeed < 0) {
+
+        speedIndicator.innerText =
+        `UP ${Math.abs(scrollSpeed)}`;
+
+    } else {
+
+        speedIndicator.innerText =
+        'PAUSED';
+    }
 }
 
 /****************************************
