@@ -61,6 +61,10 @@ let documentId = '';
 
 let orientation = 'normal';
 
+let isFetching = false;
+
+let fetchErrors = 0;
+
 /****************************************
  * UI INIT
  ****************************************/
@@ -236,8 +240,23 @@ function startScrollEngine() {
 
         if (!paused) {
 
-            prompterScreen.scrollTop +=
-                scrollSpeed * 1.2;
+            const maxScroll =
+
+                prompter.scrollHeight -
+                prompterScreen.clientHeight;
+
+            const nextScroll =
+
+                prompterScreen.scrollTop +
+                (scrollSpeed * 1.2);
+
+            prompterScreen.scrollTop = Math.min(
+                maxScroll,
+                Math.max(
+                    0,
+                    nextScroll
+                )
+            );
         }
 
         animationFrame =
@@ -254,6 +273,13 @@ function startScrollEngine() {
  ****************************************/
 
 async function fetchPrompterData() {
+
+    if (isFetching) {
+
+        return;
+    }
+
+    isFetching = true;
 
     try {
 
@@ -275,12 +301,40 @@ async function fetchPrompterData() {
             cache: 'no-store'
         });
 
+        /****************************************
+         * VALIDAR STATUS HTTP
+         ****************************************/
+
+        if (!response.ok) {
+
+            throw new Error(
+                `HTTP ERROR ${response.status}`
+            );
+        }
+
         const html =
         await response.text();
 
+        if (
+            html.includes('<!DOCTYPE html') ||
+            html.includes('accounts.google.com') ||
+            html.includes('ServiceLogin')
+        ) {
+
+            throw new Error(
+                'Invalid Google response'
+            );
+        }
+
         const processedHtml =
+        
+
+
+        
 
         html
+
+        
         
         .replaceAll(
             'color:#000000',
@@ -297,13 +351,36 @@ async function fetchPrompterData() {
             ''
         );
 
+        /****************************************
+         * VALIDAR CONTENIDO INVÁLIDO
+         ****************************************/
+
+        if (
+            processedHtml.length < 200
+        ) {
+
+            throw new Error(
+                'Invalid content size'
+            );
+        }
+
         if (
             processedHtml !==
             currentContent
         ) {
 
-            const currentScroll =
-            prompterScreen.scrollTop;
+            const maxScroll =
+
+                prompter.scrollHeight -
+                prompterScreen.clientHeight;
+
+            const scrollPercentage =
+
+                maxScroll > 0
+
+                ? prompterScreen.scrollTop / maxScroll
+
+                : 0;
 
             currentContent =
             processedHtml;
@@ -311,9 +388,26 @@ async function fetchPrompterData() {
             prompter.innerHTML =
             currentContent;
 
-            prompterScreen.scrollTop =
-            currentScroll;
+            requestAnimationFrame(() => {
+
+                const newMaxScroll =
+
+                    prompter.scrollHeight -
+                    prompterScreen.clientHeight;
+
+                const newScroll =
+
+                    Math.max(
+                        0,
+                        newMaxScroll * scrollPercentage
+                    );
+
+                prompterScreen.scrollTop =
+                newScroll;
+            });
         }
+
+        fetchErrors = 0;
 
         connectionStatus.innerText =
         'LIVE';
@@ -323,13 +417,21 @@ async function fetchPrompterData() {
 
     } catch (error) {
 
+        fetchErrors++;
+
         console.error(error);
 
-        connectionStatus.innerText =
-        'OFFLINE';
+        if (fetchErrors >= 3) {
 
-        connectionStatus.style.color =
-        '#ff4d4d';
+            connectionStatus.innerText =
+            'OFFLINE';
+
+            connectionStatus.style.color =
+            '#ff4d4d';
+        }
+    } finally {
+
+        isFetching = false;
     }
 }
 
